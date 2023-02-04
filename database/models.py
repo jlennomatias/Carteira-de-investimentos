@@ -10,11 +10,11 @@ class User(Base):
     __tablename__ = 'user'
     id = Column(Integer, primary_key=True, autoincrement=True)
     name = Column(String)
-    favorites = relationship('Favorite', backref='user')
+    favorites = relationship('Favorite', backref='user', lazy='subquery')
 
 #Criando o modelo de ativos favoritos
 class Favorite(Base):
     __tablename__ = 'favorite'
     id = Column(Integer, primary_key=True, autoincrement=True)
     codigo_ativo = Column(String)
-    user_id = Column(Integer, ForeignKey('user.id')) 
+    user_id = Column(Integer, ForeignKey('user.id'))
